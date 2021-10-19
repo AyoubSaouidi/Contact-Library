@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const { body, check, validationResult } = require('express-validator');
+const jwt = require('jsonwebtoken');
+const config = require('config');
+const { body, validationResult } = require('express-validator');
 
 // User Model
 const User = require('../models/User');
@@ -10,16 +12,17 @@ const User = require('../models/User');
 // @desc     Register a user
 // @access   Public
 router.post(
-    '/',
-    // Name validation
-    body('name', 'Name is required').not().isEmpty(),
-    // Email validation
-    body('email', 'Please enter a valid email').isEmail(),
-    // Password validation
-    body(
-        'password',
-        'Please enter a password with 6 or more characters'
-    ).isLength({ min: 6 }),
+    '/', [
+        // Name validation
+        body('name', 'Name is required').not().isEmpty(),
+        // Email validation
+        body('email', 'Please enter a valid email').isEmail(),
+        // Password validation
+        body(
+            'password',
+            'Please enter a password with 6 or more characters'
+        ).isLength({ min: 6 }),
+    ],
     async(req, res) => {
         // Errors
         const errors = validationResult(req);
@@ -50,9 +53,26 @@ router.post(
             // Saving user in DataBase
             await user.save();
 
-            // Response
-            res.json({ msg: 'User Saved' });
-        } catch (err) {}
+            // Payload of token
+            const payload = {
+                user: {
+                    id: user.id,
+                },
+            };
+
+            // Create TOKEN
+            jwt.sign(
+                payload,
+                config.get('jwtSecret'), { expiresIn: 360000 },
+                (err, token) => {
+                    if (err) throw err;
+                    res.json({ token });
+                }
+            );
+        } catch (err) {
+            console.error(err.message);
+            res.status(500).json({ error: 'Server Error' });
+        }
     }
 );
 
