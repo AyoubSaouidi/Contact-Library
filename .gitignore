@@ -1,1 +1,18 @@
+# All node modules & packages
 node_modules/
+
+# FrontEnd App build
+/client/build
+
+# Environement related
+/client/.env.local
+/client/.env.developement.local
+/client/.env.test.local
+/client/.env.production.local
+
+# Debugs related
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
