@@ -9,13 +9,21 @@ const Contacts = () => {
   // Contact Context
   const contactContext = useContext(ContactContext);
   // State from Provider
-  const { contacts } = contactContext;
+  const { contacts, filtered } = contactContext;
+
+  if (contacts.length === 0) {
+    return <h4 className='alert bg-light text-center'>Please add a contact</h4>;
+  }
 
   return (
     <Fragment>
-      {contacts.map((contact) => (
-        <ContactItem contact={contact} key={contact.id} />
-      ))}
+      {filtered !== null
+        ? filtered.map((contact) => (
+            <ContactItem contact={contact} key={contact.id} />
+          ))
+        : contacts.map((contact) => (
+            <ContactItem contact={contact} key={contact.id} />
+          ))}
     </Fragment>
   );
 };
