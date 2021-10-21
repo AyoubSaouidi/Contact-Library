@@ -439,7 +439,7 @@ table th {
 
 .item-enter-active {
     opacity: 1;
-    transition: opacity 1000ms ease-in;
+    transition: opacity 500ms ease-in;
 }
 
 .item-exit {
@@ -448,7 +448,7 @@ table th {
 
 .item-exit-active {
     opacity: 0;
-    transition: opacity 1000ms ease-in;
+    transition: opacity 500ms ease-in;
 }
 
 
