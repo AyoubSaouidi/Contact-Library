@@ -19,7 +19,7 @@ router.get('/', auth, async(req, res) => {
         res.json(contacts);
     } catch (err) {
         console.error(err.message);
-        res.status(500).json({ error: 'Server Error' });
+        res.status(500).send('Sever Error');
     }
 });
 
@@ -62,7 +62,7 @@ router.post(
             res.json(contact);
         } catch (err) {
             console.error(err.message);
-            res.status(500).json({ error: 'Server Error' });
+            res.status(500).send('Sever Error');
         }
     }
 );
@@ -105,7 +105,7 @@ router.put('/:id', auth, async(req, res) => {
         res.json(contact);
     } catch (err) {
         console.error(err.message);
-        res.status(500).json({ error: 'Server Error' });
+        res.status(500).send('Sever Error');
     }
 });
 
@@ -135,7 +135,7 @@ router.delete('/:id', auth, async(req, res) => {
         res.json({ msg: 'Contact deleted' });
     } catch (err) {
         console.error(err.message);
-        res.status(500).json({ error: 'Server Error' });
+        res.status(500).send('Sever Error');
     }
 });
 

@@ -401,6 +401,7 @@ table th {
 
 .navbar ul {
     display: flex;
+    /* gap: 1rem; */
 }
 
 .navbar a {
