@@ -8,7 +8,9 @@
         "server": "nodemon server.js",
         "client": "npm start --prefix client",
         "clientinstall": "npm install --prefix client",
-        "dev": "concurrently \"npm run server\" \"npm run client\""
+        "clientbuild": "npm run build --prefix client",
+        "dev": "concurrently \"npm run server\" \"npm run client\"",
+        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run clientinstall && npm run clientbuild"
     },
     "author": "Ayoub Saouidi",
     "license": "ISC",
