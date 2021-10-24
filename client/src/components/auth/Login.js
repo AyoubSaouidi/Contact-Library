@@ -1,5 +1,6 @@
 // Modules
 import React, { useState, useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 // Context
 import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/auth/authContext';
@@ -91,6 +92,12 @@ const Login = (props) => {
           value='Login'
           className='btn btn-primary btn-block'
         />
+        <p className='badge badge-light text-center'>
+          Don't have an account?{' '}
+          <Link to='/register' className='text-primary'>
+            Register
+          </Link>
+        </p>
       </form>
     </div>
   );
