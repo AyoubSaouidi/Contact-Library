@@ -4,6 +4,10 @@ node_modules/
 # FrontEnd App build
 /client/build
 
+# Config Variables
+/config/default.json
+/config/production.json
+
 # Environement related
 /client/.env.local
 /client/.env.developement.local
